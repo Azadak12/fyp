@@ -14,26 +14,35 @@
         .text-gradient { background: linear-gradient(to right, #60a5fa, #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .nav-dot { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
         .active-dot { background: #3b82f6; border-color: #60a5fa; box-shadow: 0 0 25px rgba(59, 130, 246, 0.5); transform: scale(1.2); }
+        [x-cloak] { display: none !important; }
     </style>
 </head>
 <body x-data="{ step: 0 }" x-init="lucide.createIcons();">
 
     <div class="max-w-6xl mx-auto px-6 py-10">
         
-        <div x-show="step === 0" class="min-h-[85vh] flex flex-col items-center justify-center text-center animate-fade-in">
+        <div x-show="step === 0" class="min-h-[85vh] flex flex-col items-center justify-center text-center">
             <div class="mb-6 px-4 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest">
                 Final Year Project Proposal
             </div>
             <h1 class="text-7xl md:text-9xl font-extrabold text-gradient tracking-tighter mb-6">CareerFlow AI</h1>
-            <p class="text-xl md:text-3xl text-slate-400 max-w-3xl leading-relaxed font-light">
-                An intelligent ecosystem that maps the distance between <span class="text-white font-semibold">Current Skills</span> and <span class="text-white font-semibold">Market Success</span>.
-            </p>
+            
+            <div class="max-w-3xl space-y-6">
+                <p class="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
+                    Imagine a <span class="text-white font-semibold underline decoration-blue-500">GPS for your career</span>. 
+                    Most students and job seekers today are "lost" because they don't know which skills are actually worth learning.
+                </p>
+                <p class="text-lg text-slate-400 font-light">
+                    CareerFlow AI is an all-in-one system that takes the guesswork out of professional growth.
+                </p>
+            </div>
+
             <button @click="step = 1" class="mt-12 px-12 py-5 bg-blue-600 rounded-full font-bold text-lg hover:bg-blue-500 transition-all shadow-2xl shadow-blue-500/30 flex items-center gap-4">
                 View Proposal <i data-lucide="arrow-right"></i>
             </button>
         </div>
 
-        <nav x-show="step > 0" class="flex justify-between items-center mb-16 max-w-2xl mx-auto relative">
+        <nav x-show="step > 0" x-cloak class="flex justify-between items-center mb-16 max-w-2xl mx-auto relative">
             <div class="absolute top-1/2 left-0 w-full h-0.5 bg-slate-800 -z-10 -translate-y-1/2"></div>
             <template x-for="(label, i) in ['The Problem', 'The Solution', 'Architecture', 'Current Status']">
                 <div class="flex flex-col items-center">
@@ -47,24 +56,24 @@
             </template>
         </nav>
 
-        <main x-show="step > 0" class="glass p-8 md:p-16 rounded-[3rem] shadow-2xl relative">
+        <main x-show="step > 0" x-cloak class="glass p-8 md:p-16 rounded-[3rem] shadow-2xl relative">
             
-            <div x-show="step === 1" class="space-y-10 animate-fade-in">
+            <div x-show="step === 1" class="space-y-10">
                 <div class="flex items-center gap-4">
                     <div class="p-3 bg-red-500/20 rounded-2xl text-red-500"><i data-lucide="help-circle"></i></div>
-                    <h2 class="text-4xl font-bold">The Problem Statement</h2>
+                    <h2 class="text-4xl font-bold">The Problem</h2>
                 </div>
                 <p class="text-lg text-slate-400 leading-relaxed max-w-2xl">
-                    Most individuals struggle to find their career path because the current system is <span class="text-white">fragmented and confusing</span>.
+                    Today's job seekers face a fragmented, overwhelming journey where they struggle to identify the right path or prove their talent.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="p-6 bg-white/5 rounded-3xl border border-white/10 hover:border-red-500/50 transition-colors">
-                        <h4 class="font-bold text-xl mb-3">Choice Paralysis</h4>
-                        <p class="text-sm text-slate-400">Users have too many options but no data-driven way to pick the right one based on their background.</p>
+                        <h4 class="font-bold text-xl mb-3 text-red-400">Market Blindness</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Individuals lack awareness of real-time industry demand, future opportunities, and salary trends.</p>
                     </div>
                     <div class="p-6 bg-white/5 rounded-3xl border border-white/10 hover:border-red-500/50 transition-colors">
-                        <h4 class="font-bold text-xl mb-3">Skill Mismatch</h4>
-                        <p class="text-sm text-slate-400">Learners often spend months learning skills that are no longer in demand or pay poorly.</p>
+                        <h4 class="font-bold text-xl mb-3 text-red-400">The Portfolio Gap</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Users find it difficult to build a strong, personalized portfolio due to limited guidance on practical projects.</p>
                     </div>
                 </div>
             </div>
@@ -72,68 +81,81 @@
             <div x-show="step === 2" class="space-y-10">
                 <div class="flex items-center gap-4">
                     <div class="p-3 bg-emerald-500/20 rounded-2xl text-emerald-500"><i data-lucide="zap"></i></div>
-                    <h2 class="text-4xl font-bold">Our Solution</h2>
+                    <h2 class="text-4xl font-bold">How it Solves the Problem</h2>
                 </div>
-                <p class="text-lg text-slate-400">We provide an all-in-one AI platform that guides you through the <span class="text-white">entire professional lifecycle</span>.</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="p-8 glass rounded-3xl border-blue-500/20 text-center">
-                        <div class="mb-4 inline-block p-4 bg-blue-500/20 rounded-2xl text-blue-400"><i data-lucide="search"></i></div>
-                        <h3 class="font-bold text-lg">Analyze</h3>
-                        <p class="text-xs text-slate-500 mt-2">Scans market trends and matches them to your interests.</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="p-8 glass rounded-3xl border-blue-500/20 space-y-4">
+                        <div class="inline-block p-4 bg-blue-500/20 rounded-2xl text-blue-400"><i data-lucide="search"></i></div>
+                        <h3 class="font-bold text-xl">The Smart Match</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Our AI analyzes your background and interests, then scans the job market to find the path that leads to the most success.</p>
                     </div>
-                    <div class="p-8 glass rounded-3xl border-emerald-500/20 text-center">
-                        <div class="mb-4 inline-block p-4 bg-emerald-500/20 rounded-2xl text-emerald-500"><i data-lucide="map-pin"></i></div>
-                        <h3 class="font-bold text-lg">Roadmap</h3>
-                        <p class="text-xs text-slate-500 mt-2">Creates a step-by-step learning path with milestones.</p>
+                    <div class="p-8 glass rounded-3xl border-emerald-500/20 space-y-4">
+                        <div class="inline-block p-4 bg-emerald-500/20 rounded-2xl text-emerald-500"><i data-lucide="map"></i></div>
+                        <h3 class="font-bold text-xl">The Personal Roadmap</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">We provide a step-by-step plan. The system tells you exactly what to learn and provides the best resources to get there.</p>
                     </div>
-                    <div class="p-8 glass rounded-3xl border-purple-500/20 text-center">
-                        <div class="mb-4 inline-block p-4 bg-purple-500/20 rounded-2xl text-purple-400"><i data-lucide="user-check"></i></div>
-                        <h3 class="font-bold text-lg">Build</h3>
-                        <p class="text-xs text-slate-500 mt-2">Auto-generates professional resumes and portfolios.</p>
+                    <div class="p-8 glass rounded-3xl border-purple-500/20 space-y-4">
+                        <div class="inline-block p-4 bg-purple-500/20 rounded-2xl text-purple-400"><i data-lucide="award"></i></div>
+                        <h3 class="font-bold text-xl">The Finished Brand</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">As you learn, the system automatically builds your professional resume and portfolio. You graduate "hired-ready."</p>
                     </div>
+                </div>
+
+                <div class="mt-10 p-6 bg-blue-500/10 rounded-2xl border border-blue-500/30 text-center">
+                    <p class="text-blue-300">
+                        <strong>The Bottom Line:</strong> We are building a bridge between where you are now and where the market is going.
+                    </p>
                 </div>
             </div>
 
             <div x-show="step === 3" class="space-y-10">
                 <div class="flex items-center gap-4">
                     <div class="p-3 bg-blue-500/20 rounded-2xl text-blue-500"><i data-lucide="layers"></i></div>
-                    <h2 class="text-4xl font-bold">Architecture</h2>
+                    <h2 class="text-4xl font-bold">System Architecture</h2>
                 </div>
-                <div class="relative p-10 bg-slate-900 rounded-[2rem] border border-blue-500/20">
+                <div class="relative p-10 bg-slate-900 rounded-[2rem] border border-blue-500/20 text-center">
                     <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                        <div class="text-center">
-                            <div class="w-24 h-24 bg-slate-800 rounded-2xl flex items-center justify-center mb-2 mx-auto border border-white/5">Inputs</div>
-                            <span class="text-[10px] text-slate-500">Major & Interests</span>
+                        <div class="text-center group">
+                            <div class="w-24 h-24 bg-slate-800 rounded-2xl flex items-center justify-center mb-2 mx-auto border border-white/5 group-hover:border-blue-500/50 transition-all">
+                                <i data-lucide="user" class="text-slate-400"></i>
+                            </div>
+                            <span class="text-xs font-bold text-slate-500">User Data Input</span>
                         </div>
                         <i data-lucide="arrow-right" class="hidden md:block text-slate-700"></i>
                         <div class="text-center scale-125">
                             <div class="w-32 h-32 bg-blue-600 rounded-3xl flex flex-col items-center justify-center mb-2 mx-auto shadow-2xl shadow-blue-500/40">
                                 <i data-lucide="bot" class="mb-2"></i>
-                                <span class="text-xs font-bold">AI CORE</span>
+                                <span class="text-[10px] font-bold uppercase tracking-widest">AI Core Engine</span>
                             </div>
                         </div>
                         <i data-lucide="arrow-right" class="hidden md:block text-slate-700"></i>
-                        <div class="text-center">
-                            <div class="w-24 h-24 bg-slate-800 rounded-2xl flex items-center justify-center mb-2 mx-auto border border-white/5 text-emerald-400">Outcome</div>
-                            <span class="text-[10px] text-slate-500">Job Readiness</span>
+                        <div class="text-center group">
+                            <div class="w-24 h-24 bg-slate-800 rounded-2xl flex items-center justify-center mb-2 mx-auto border border-white/5 group-hover:border-emerald-500/50 transition-all">
+                                <i data-lucide="trending-up" class="text-emerald-400"></i>
+                            </div>
+                            <span class="text-xs font-bold text-slate-500">Market Success</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div x-show="step === 4" class="space-y-10 text-center">
-                <h2 class="text-5xl font-extrabold text-gradient">Current Step: Proposal</h2>
+                <h2 class="text-5xl font-extrabold text-gradient">Status: Research & Proposal</h2>
                 <div class="max-w-2xl mx-auto space-y-6">
                     <div class="flex items-center justify-between p-6 bg-white/5 rounded-2xl border-l-8 border-emerald-500">
-                        <span class="font-bold">Phase 1: Research & Proposal</span>
-                        <span class="text-emerald-500 font-bold uppercase text-xs">Active</span>
+                        <div class="text-left">
+                            <span class="block font-bold">Phase 1: Research & Proposal</span>
+                            <span class="text-xs text-slate-500">Logic definition & data sourcing</span>
+                        </div>
+                        <span class="text-emerald-500 font-bold uppercase text-xs">Active Stage</span>
                     </div>
                     <div class="flex items-center justify-between p-6 bg-white/5 rounded-2xl border-l-8 border-slate-700 text-slate-500">
-                        <span>Phase 2: MVP Development</span>
+                        <span class="font-bold">Phase 2: MVP Development</span>
                         <span class="uppercase text-xs">Pending</span>
                     </div>
                     <div class="flex items-center justify-between p-6 bg-white/5 rounded-2xl border-l-8 border-slate-700 text-slate-500">
-                        <span>Phase 3: Integration & Launch</span>
+                        <span class="font-bold">Phase 3: Launch</span>
                         <span class="uppercase text-xs">Future</span>
                     </div>
                 </div>
@@ -141,7 +163,7 @@
 
         </main>
 
-        <div x-show="step > 0" class="mt-12 flex justify-between items-center max-w-4xl mx-auto">
+        <div x-show="step > 0" x-cloak class="mt-12 flex justify-between items-center max-w-4xl mx-auto">
             <button @click="step--" class="text-slate-500 hover:text-white font-bold tracking-widest uppercase text-xs transition-all flex items-center gap-2">
                 <i data-lucide="chevron-left" class="w-4 h-4"></i> Back
             </button>
@@ -152,7 +174,6 @@
     </div>
 
     <script>
-        // Ensure icons re-render on step change
         document.addEventListener('alpine:init', () => {
             Alpine.effect(() => {
                 const currentStep = Alpine.evaluate(document.body, 'step');

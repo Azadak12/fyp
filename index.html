@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerFlow AI - Defense Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0f172a; color: #f8fafc; }
+        .step-active { border-color: #3b82f6; color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body x-data="{ currentStep: 1 }">
+
+    <div class="max-w-5xl mx-auto px-6 py-12">
+        <div class="flex justify-between items-center mb-12">
+            <div>
+                <h1 class="text-3xl font-extrabold tracking-tight">CareerFlow <span class="text-blue-500">AI</span></h1>
+                <p class="text-slate-400">Market-Driven Career Orchestration</p>
+            </div>
+            <div class="text-right">
+                <span class="px-3 py-1 rounded-full border border-yellow-500/50 text-yellow-500 text-xs font-bold uppercase tracking-widest animate-pulse">
+                    Proposal Phase
+                </span>
+            </div>
+        </div>
+
+        <div class="flex justify-between mb-16 relative">
+            <div class="absolute top-5 left-0 w-full h-0.5 bg-slate-800 -z-10"></div>
+            <template x-for="(label, index) in ['The Problem', 'The Solution', 'The Architecture', 'Current Status']">
+                <div class="flex flex-col items-center">
+                    <button @click="currentStep = index + 1" 
+                            :class="currentStep >= index + 1 ? 'bg-blue-600 border-blue-400' : 'bg-slate-900 border-slate-700'"
+                            class="w-10 h-10 rounded-full border-2 transition-all flex items-center justify-center font-bold mb-2">
+                        <span x-text="index + 1"></span>
+                    </button>
+                    <span class="text-xs font-medium" :class="currentStep === index + 1 ? 'text-blue-400' : 'text-slate-500'" x-text="label"></span>
+                </div>
+            </template>
+        </div>
+
+        <div class="glass p-10 rounded-3xl min-h-[400px]">
+            
+            <div x-show="currentStep === 1" class="space-y-6">
+                <h2 class="text-2xl font-bold border-l-4 border-red-500 pl-4">The "Experience Gap" Problem</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                    <div class="space-y-4">
+                        <p class="text-slate-300 italic">"I don't know what skills to learn, and even if I did, I don't know how to prove it to employers."</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center text-sm text-slate-400"><span class="text-red-500 mr-2">✕</span> Paralyzing choice of career paths</li>
+                            <li class="flex items-center text-sm text-slate-400"><span class="text-red-500 mr-2">✕</span> Learning skills that are no longer in demand</li>
+                            <li class="flex items-center text-sm text-slate-400"><span class="text-red-500 mr-2">✕</span> Struggle to build a portfolio from scratch</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-700">
+                        <h4 class="text-xs font-bold text-slate-500 uppercase mb-4 tracking-tighter">Market Reality</h4>
+                        <div class="space-y-4">
+                            <div class="h-2 w-full bg-slate-800 rounded"><div class="h-2 w-3/4 bg-red-400 rounded"></div></div>
+                            <p class="text-[10px] text-slate-500">75% of graduates feel unprepared for the job market.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div x-show="currentStep === 2" class="space-y-6">
+                <h2 class="text-2xl font-bold border-l-4 border-emerald-500 pl-4">The AI-Powered Solution</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl">
+                        <h3 class="font-bold text-emerald-400">Identify</h3>
+                        <p class="text-xs text-slate-400 mt-2">AI analyzes market demand vs. user interest to pick the winning path.</p>
+                    </div>
+                    <div class="p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+                        <h3 class="font-bold text-blue-400">Execute</h3>
+                        <p class="text-xs text-slate-400 mt-2">Personalized roadmaps with curated modules and real projects.</p>
+                    </div>
+                    <div class="p-4 bg-purple-500/10 border border-purple-500/20 rounded-xl">
+                        <h3 class="font-bold text-purple-400">Validate</h3>
+                        <p class="text-xs text-slate-400 mt-2">Automated Resume & Portfolio generation to showcase growth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div x-show="currentStep === 3">
+                <h2 class="text-2xl font-bold mb-6">How It Works (System Logic)</h2>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex items-center gap-4 bg-slate-800/50 p-4 rounded-lg">
+                        <div class="w-8 h-8 rounded bg-blue-500 flex items-center justify-center font-bold">1</div>
+                        <div><span class="font-bold">Input:</span> User Background + Skills + Interests</div>
+                    </div>
+                    <div class="flex items-center gap-4 bg-slate-800/50 p-4 rounded-lg">
+                        <div class="w-8 h-8 rounded bg-blue-500 flex items-center justify-center font-bold">2</div>
+                        <div><span class="font-bold">Process:</span> Market Scraper + AI Matcher + Roadmap Generator</div>
+                    </div>
+                    <div class="flex items-center gap-4 bg-slate-800/50 p-4 rounded-lg">
+                        <div class="w-8 h-8 rounded bg-blue-500 flex items-center justify-center font-bold">3</div>
+                        <div><span class="font-bold">Output:</span> Dynamic Learning Path & Pro Resume</div>
+                    </div>
+                </div>
+            </div>
+
+            <div x-show="currentStep === 4" class="text-center py-10">
+                <h2 class="text-3xl font-extrabold text-blue-400 mb-4">Phase: Proposal & Logic Definition</h2>
+                <p class="text-slate-400 mb-8 max-w-xl mx-auto">We are currently in Step 1 of the development lifecycle, finalizing the core algorithm and data sourcing strategy.</p>
+                <div class="flex justify-center gap-4">
+                    <div class="px-6 py-4 rounded-2xl bg-blue-600 font-bold border-2 border-blue-400">
+                        STEP 1: PROPOSAL
+                    </div>
+                    <div class="px-6 py-4 rounded-2xl bg-slate-800 text-slate-500 border-2 border-slate-700">
+                        STEP 2: MVP
+                    </div>
+                    <div class="px-6 py-4 rounded-2xl bg-slate-800 text-slate-500 border-2 border-slate-700">
+                        STEP 3: BETA
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-8 flex justify-between">
+            <button @click="if(currentStep > 1) currentStep--" class="text-slate-400 hover:text-white transition uppercase text-xs font-bold tracking-widest">Back</button>
+            <button @click="if(currentStep < 4) currentStep++" class="bg-white text-slate-950 px-8 py-3 rounded-full font-bold hover:bg-blue-400 transition uppercase text-xs tracking-widest">
+                <span x-text="currentStep === 4 ? 'Finish Presentation' : 'Continue'"></span>
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>

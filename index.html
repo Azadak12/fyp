@@ -21,27 +21,32 @@
 
     <div class="max-w-6xl mx-auto px-6 py-10">
         
-        <div x-show="step === 0" class="min-h-[85vh] flex flex-col items-center justify-center text-center">
-            <div class="mb-6 px-4 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest">
-                Final Year Project Proposal
-            </div>
-            <h1 class="text-7xl md:text-9xl font-extrabold text-gradient tracking-tighter mb-6">CareerFlow AI</h1>
-            
-            <div class="max-w-3xl space-y-6">
-                <p class="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
-                    Imagine a <span class="text-white font-semibold underline decoration-blue-500">GPS for your career</span>. 
-                    Most students and job seekers today are "lost" because they don't know which skills are actually worth learning.
-                </p>
-                <p class="text-lg text-slate-400 font-light italic">
-                    CareerFlow AI is an all-in-one system that takes the guesswork out of professional growth.
-                </p>
-            </div>
+        <div x-show="step === 0" class="min-h-[85vh] flex flex-col items-center justify-center text-center animate-fade-in">
+    
+    <div class="mb-8 p-2 bg-white rounded-2xl shadow-lg shadow-blue-500/10 transition-transform hover:scale-105">
+        <img src="uni.png" alt="University Logo" class="h-20 md:h-24 w-auto object-contain">
+    </div>
 
-            <button @click="step = 1" class="mt-12 px-12 py-5 bg-blue-600 rounded-full font-bold text-lg hover:bg-blue-500 transition-all shadow-2xl shadow-blue-500/30 flex items-center gap-4">
-                View Proposal <i data-lucide="arrow-right"></i>
-            </button>
-        </div>
+    <div class="mb-6 px-4 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-widest">
+        Final Year Project Proposal
+    </div>
+    
+    <h1 class="text-7xl md:text-9xl font-extrabold text-gradient tracking-tighter mb-6">CareerFlow AI</h1>
+    
+    <div class="max-w-3xl space-y-6">
+        <p class="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
+            Imagine a <span class="text-white font-semibold underline decoration-blue-500">GPS for your career</span>. 
+            Most students and job seekers today are "lost" because they don't know which skills are actually worth learning.
+        </p>
+        <p class="text-lg text-slate-400 font-light italic">
+            CareerFlow AI is an all-in-one system that takes the guesswork out of professional growth.
+        </p>
+    </div>
 
+    <button @click="step = 1" class="mt-12 px-12 py-5 bg-blue-600 rounded-full font-bold text-lg hover:bg-blue-500 transition-all shadow-2xl shadow-blue-500/30 flex items-center gap-4">
+        View Proposal <i data-lucide="arrow-right"></i>
+    </button>
+</div>
         <nav x-show="step > 0" x-cloak class="flex justify-between items-center mb-16 max-w-2xl mx-auto relative">
             <div class="absolute top-1/2 left-0 w-full h-0.5 bg-slate-800 -z-10 -translate-y-1/2"></div>
             <template x-for="(label, i) in ['The Problems', 'The Solution', 'Architecture', 'Current Status']">
